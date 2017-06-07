@@ -1,0 +1,21 @@
+{
+  "name": "packagefilter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lyy",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-body": "^2.1.0",
+    "koa-mongo": "^0.7.0",
+    "koa-router": "^7.2.0",
+    "koa-views": "^6.0.2",
+    "log4js": "^1.1.1",
+    "mongoose": "^4.10.5",
+    "xlsx": "^0.10.4"
+  }
+}
