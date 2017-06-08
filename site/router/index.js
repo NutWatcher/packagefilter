@@ -4,7 +4,9 @@
 let Router = require('koa-router');
 let router = new Router();
 
-router.get('/', (ctx) =>  {
+router.get('/',async (ctx, next) =>  {
+    console.log("in");
+    await ctx.render("admin.html");
     console.log(ctx.request.query);
     console.log(ctx.query);
 });
