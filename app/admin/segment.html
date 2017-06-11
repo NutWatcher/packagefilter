@@ -175,54 +175,7 @@ desired effect
             </ul>-->
           </li>
           <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">管理员</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
           <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
         </ul>
       </div>
     </nav>
@@ -259,10 +212,9 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>信息导入</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>段道管理</span></a></li>
+          <li class="header">HEADER</li>
+          <li><a href="/admin"><i class="fa fa-link"></i> <span>信息导入</span></a></li>
+          <li class="active"><a href="#"><i class="fa fa-link"></i> <span>段道管理</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -274,21 +226,52 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Page Header
-        <small>Optional description</small>
+        段号管理
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-
-      <!-- Your Page Content Here -->
-
+      <div class="row">
+          <div class="col-md-12">
+              <div class="box box-success">
+                  <div class="box-header with-border">
+                      <button class="btn btn-primary" id="addSegment">新增</button>
+                  </div>
+                  <div class="">
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                          <table id="segmentList" class="table table-bordered table-hover">
+                              <thead>
+                              <tr>
+                                  <th>邮编开始</th>
+                                  <th>邮编结束</th>
+                                  <th>段号</th>
+                                  <th>操作</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                  <td>Other browsers</td>
+                                  <td>All others</td>
+                                  <td>-</td>
+                                  <td>-</td>
+                              </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      <!-- /.box-body -->
+                  </div>
+                  <!-- /.box -->
+                  <!-- /.box-header -->
+                  <!-- form start -->
+              </div>
+          </div>
+      </div>
+      <!-- /.row -->
     </section>
+    <!-- /.content -->
+  </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -390,7 +373,7 @@ desired effect
 <script  type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script  type="text/javascript" src="/js/app.min.js"></script>
-
+<script  type="text/javascript" src="/js/admin/segment.js"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

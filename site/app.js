@@ -1,3 +1,4 @@
+//noinspection JSUnresolvedFunction
 /**
  * Created by lyy on 2017/6/7.
  */
@@ -27,7 +28,8 @@ app.use(async (ctx, next) => {
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
-app.use(index_router.routes()).use(index_router.allowedMethods());
+app.use(index_router.routes())
+    .use(index_router.allowedMethods());
 
 // // response
 // app.use(async (ctx) => {

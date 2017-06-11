@@ -3,3 +3,4 @@ node_modules
 npm-debug.log
 config/log_config.js
 config/site_config.js
+site/upload/
