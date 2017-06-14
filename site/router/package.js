@@ -15,12 +15,14 @@ module.exports = (router) => {
             let result = await DB.queryDbPromise(tempSql);
             if (result.length == 0) {
                 ctx.body = {
-                    msg: "查无此订单"
+                    "segment" : "查无此订单",
+                    "post" : ""
                 }
             } else {
                 let segment = Segment.getSegmentByPost(result[0].post);
                 ctx.body = {
-                    msg: "邮编:" + result[0].post + "   段号:" + segment
+                    "segment" : segment,
+                    "post" : result[0].post
                 }
             }
         }

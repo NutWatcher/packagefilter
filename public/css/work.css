@@ -16,9 +16,11 @@ body{
 }
 .content{
     background: green;
+    height: 100%;
 }
-p{
-
+.segment{
+    position: absolute;top:50%;
+    width: 100%;
 }
 .segment p{
     text-align: center;

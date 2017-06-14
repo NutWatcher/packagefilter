@@ -1,16 +1,16 @@
 /**
  * Created by lyy on 2017/6/8.
  */
-var viewFontSize = 16;
+var viewFontSize = 180;
 function addFontSize() {
     viewFontSize += 2 ;
-    $('#V_order').css({fontSize:viewFontSize+ "px",marginTop:viewFontSize*2 + "px"});
-    $('#V_segment').css({fontSize:viewFontSize+ 5 + "px",marginTop:viewFontSize*2 + "px"});
+    //$('#V_order').css({fontSize:viewFontSize+ "px",marginTop:viewFontSize*2 + "px"});
+    $('#V_segment').css({fontSize:viewFontSize + "px",marginTop:"-" + viewFontSize + "px"});
 }
 function subtractFontSize() {
     viewFontSize -= 2 ;
-    $('#V_order').css({fontSize:viewFontSize + "px",marginTop:viewFontSize*2 + "px"});
-    $('#V_segment').css({fontSize:viewFontSize+ 5 + "px",marginTop:viewFontSize*2 + "px"});
+    //$('#V_order').css({fontSize:viewFontSize + "px",marginTop:viewFontSize*2 + "px"});
+    $('#V_segment').css({fontSize:viewFontSize + "px",marginTop:"-" + viewFontSize + "px"});
 }
 function getOrderInfo(order) {
     $('#V_order').text(order);
@@ -22,16 +22,18 @@ function getOrderInfo(order) {
             order:order
         },
         success: function (res) {
-            $('#V_segment').text(res.msg);
+            $('#orderInput').val("");
+            $('#V_segment').text(res.segment);
+            $('#V_post').text(res.post);
         },
         error: function (e) {
+            $('#orderInput').val("");
             $('#V_segment').text(e.toString());
         }
     });
 }
 $(function () {
-    $('#V_order').css({fontSize:viewFontSize + "px",marginTop:viewFontSize*2 + "px"});
-    $('#V_segment').css({fontSize:viewFontSize+ 5 + "px",marginTop:viewFontSize*2 + "px"});
+    $('#V_segment').css({fontSize:viewFontSize + "px",marginTop:"-" + viewFontSize + "px"});
     $('#addFontSize').bind("click",addFontSize) ;
     $('#subtractFontSize').bind("click",subtractFontSize) ;
     $('#orderInput').bind('keydown',function(event){

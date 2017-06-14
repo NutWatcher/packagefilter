@@ -1,21 +1,47 @@
 /**
  * Created by lyy on 2017/6/8.
  */
-function doUpload(event) {
-    alert(1);
+function addSegment(event) {
     event.stopPropagation();
-    var formData = new FormData($( "#uploadPackageFile" )[0]);
-    console.log(formData);
+    event.preventDefault()
     $.ajax({
-        url: '/admin/uploadPackageFile' ,
+        url: '/admin/addSegment' ,
         type: 'POST',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function () {
-            getTaskList();
+        data: {
+            startPost: $('#startPost').val(),
+            endPost: $('#endPost').val(),
+            segmentValue: $('#segmentValue').val()
+        },
+        success: function (res) {
+            if (res.success == true){
+                getSegmentList();
+                alert("成功");
+            }
+            else{
+                alert(res.msg);
+            }
+        },
+        error: function (e) {
+            alert(e.toString());
+        }
+    });
+}
+function deleteSegment(id) {
+    //alert(id);
+    $.ajax({
+        url: '/admin/deleteSegment' ,
+        type: 'POST',
+        data: {
+            id:id
+        },
+        success: function (res) {
+            if (res.success == true){
+                getSegmentList();
+                alert("成功");
+            }
+            else{
+                alert(res.msg);
+            }
         },
         error: function (e) {
             alert(e.toString());
@@ -23,6 +49,7 @@ function doUpload(event) {
     });
 }
 function getSegmentList() {
+    $('#segmentList').find('tbody').children().remove() ;
     $.ajax({
         url: '/admin/segmentList' ,
         type: 'get',
@@ -33,7 +60,7 @@ function getSegmentList() {
                     var str = "<td>" + segmentList[i].start + "</td>";
                     str += "<td>" + segmentList[i].end + "</td>";
                     str += "<td>" + segmentList[i].value + "</td>";
-                    str += `<td><button class="btn btn-danger" >删除</button></td>`;
+                    str += `<td><button  onClick="deleteSegment(`+segmentList[i].id+`)" class="btn btn-danger" >删除</button></td>`;
                     $('#segmentList').find('tbody').append("<tr>" + str + "</tr>");
                 }
             } else {
@@ -46,7 +73,7 @@ function getSegmentList() {
     });
 }
 $(function () {
-    $('#segmentList').find('tbody').children().remove() ;
     getSegmentList();
-    $('#Btn_uploadPackageFile').bind("click",doUpload) ;
+    $('#Btn_addSegment').bind("click",addSegment) ;
+ //   $('#addSegmentModal').modal('show');
 });

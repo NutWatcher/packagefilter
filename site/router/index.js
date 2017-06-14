@@ -13,6 +13,7 @@ router.get('/admin',async (ctx) =>  {
     await ctx.render("admin/index.html");
 });
 router.get('/admin/segment',async (ctx) =>  {
+    //await ctx.render("admin/index.html");
     await ctx.render("admin/segment.html");
 });
 

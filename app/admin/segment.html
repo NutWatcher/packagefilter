@@ -33,6 +33,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style type="text/css">
         body, html,input, a, p{font-family:"Microsoft YaHei","Helvetica Neue",Arial,Helvetica,sans-serif,"宋体",sans-serif;}
     </style>
+    <style>
+        .example-modal .modal{
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+
+        }
+        .notIn{
+            display: none;
+        }
+        .in{
+            display: block;
+        }
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -55,6 +75,8 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue sidebar-mini">
+
+
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -236,7 +258,25 @@ desired effect
           <div class="col-md-12">
               <div class="box box-success">
                   <div class="box-header with-border">
-                      <button class="btn btn-primary" id="addSegment">新增</button>
+                      <form role="form">
+                          <div class="box-body">
+                              <div class="form-group">
+                                  <label for="startPost">起始邮编</label>
+                                  <input class="form-control " id="startPost" placeholder="">
+                              </div>
+                              <div class="form-group">
+                                  <label for="endPost">结束邮编</label>
+                                  <input  class="form-control" id="endPost" placeholder="">
+                              </div>
+                              <div class="form-group">
+                                  <label for="segmentValue">道段号</label>
+                                  <input  class="form-control" id="segmentValue" placeholder="">
+                              </div>
+                              <div class="form-group">
+                                  <button type="buttom" id="Btn_addSegment" class="btn btn-primary">增加</button>
+                              </div>
+                          </div>
+                      </form>
                   </div>
                   <div class="">
                       <!-- /.box-header -->

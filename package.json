@@ -9,6 +9,7 @@
   "author": "lyy",
   "license": "ISC",
   "dependencies": {
+    "csv": "^1.1.1",
     "koa": "^2.2.0",
     "koa-body": "^2.1.0",
     "koa-mongo": "^0.7.0",

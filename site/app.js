@@ -21,11 +21,12 @@ app.use(koaViews(path.join('../app'), { extension: 'ejs' }));
 app.use(koaBody({ multipart: true }));
 
 
-app.use(async (ctx, next) => {
+app.use(async (ctx, next) => {  
     const start = Date.now();
     await next();
     const ms = Date.now() - start;
-    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+    const time = new Date().toLocaleString();
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms - ${time}`);
 });
 
 app.use(index_router.routes())

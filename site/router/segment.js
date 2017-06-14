@@ -10,7 +10,7 @@ const Segment = require("../service/segment");
 module.exports = (router) => {
     router.get('/admin/segmentList', async(ctx, ) => {
         try {
-            let tempSql = mysqlFormat("select * from segment;", []);
+            let tempSql = mysqlFormat("select * from segment order by id desc ;", []);
             let result = await DB.queryDbPromise(tempSql);
             ctx.body = {
                 success: true,
@@ -21,7 +21,44 @@ module.exports = (router) => {
             consle.log(e.toString());
             ctx.body = {
                 success: false,
-                segmentList: e.toString()
+                msg: e.toString()
+            };
+        }
+    });
+    router.post('/admin/addSegment', async(ctx, ) => {
+        try {
+            let startPost = ctx.request.body['startPost'];
+            let endPost = ctx.request.body['endPost'];
+            let segmentValue = ctx.request.body['segmentValue'];
+            let tempSql = mysqlFormat("INSERT INTO `segment` (`start`, `end`, `value`) VALUES (?,?,?);",
+                [startPost, endPost, segmentValue]);
+            await DB.queryDbPromise(tempSql);
+            ctx.body = {
+                success: true
+            };
+        }
+        catch (e){
+            consle.log(e.toString());
+            ctx.body = {
+                success: false,
+                msg: e.toString()
+            };
+        }
+    })
+    router.post('/admin/deleteSegment', async(ctx) => {
+        try {
+            let deleteId = ctx.request.body['id'];
+            let tempSql = mysqlFormat("DELETE FROM `segment` WHERE `id`= ? ;", [deleteId]);
+            await DB.queryDbPromise(tempSql);
+            ctx.body = {
+                success: true
+            };
+        }
+        catch (e){
+            consle.log(e.toString());
+            ctx.body = {
+                success: false,
+                msg: e.toString()
             };
         }
     })

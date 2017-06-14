@@ -6,28 +6,25 @@ const DB = require("../util/mysql");
 //noinspection JSUnresolvedFunction
 const mysqlFormat = require('mysql').format ;
 let segmentList = [];
+let segmentMap = new Map();
 const initSegment = async() => {
     let tempSql = mysqlFormat("select * from segment" , []) ;
     segmentList = await DB.queryDbPromise(tempSql) ;
     segmentList.sort(function (a, b) {
         return a.start - b.start ;
     });
+    for (let i = 0 ; i < segmentList.length ; i ++){
+        segmentMap.set(segmentList[i].start, segmentList[i].value);
+    }
     console.log(segmentList);
 };
 initSegment();
 class Segment{
     static getSegmentByPost(post){
-        //noinspection LoopStatementThatDoesntLoopJS
-        for (let i = 0 ; i < segmentList.length ; i ++){
-            //noinspection StatementWithEmptyBodyJS
-            if (post >= segmentList[i].start && post <= segmentList[i].end) ;{
-                return segmentList[i].value ;
-            }
-            //noinspection UnreachableCodeJS
-            if (post < segmentList[i].start){
-                return "没有对应关系";
-            }
-        }
+        let key = post.substring(0,4);
+        console.log(key);
+        let result = segmentMap.get(key) ;
+        return result == undefined ? "没有对应号段": result ;
     }
 }
 //noinspection JSUnresolvedVariable

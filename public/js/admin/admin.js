@@ -2,7 +2,6 @@
  * Created by lyy on 2017/6/8.
  */
 function doUpload(event) {
-    alert(1);
     event.stopPropagation();
     var formData = new FormData($( "#uploadPackageFile" )[0]);
     console.log(formData);
@@ -23,6 +22,7 @@ function doUpload(event) {
     });
 }
 function getTaskList() {
+    $('#taskList').find('tbody').children().remove() ;
     $.ajax({
         url: '/admin/taskList' ,
         type: 'get',
@@ -34,9 +34,9 @@ function getTaskList() {
                     str += "<td>" + new Date(taskList[i].create_time).toLocaleString() + "</td>";
                     str += "<td>" + taskList[i].num + "</td>";
                     str += "<td>" + taskList[i].status + "</td>";
-                    if (taskList[i].status = "准备导入") {
+                    /*if (taskList[i].status = "准备导入") {
                         str += `<td><button class="btn btn-warning" >导入</button></td>`;
-                    }
+                    }*/
                     $('#taskList').find('tbody').append("<tr>" + str + "</tr>");
                 }
             } else {
@@ -49,7 +49,6 @@ function getTaskList() {
     });
 }
 $(function () {
-    $('#taskList').find('tbody').children().remove() ;
     getTaskList();
     $('#Btn_uploadPackageFile').bind("click",doUpload) ;
 });

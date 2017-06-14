@@ -15,6 +15,7 @@ const readFile = async (fileName, taskId) => {
     try {
         let workbook = XLSX.readFile(path.join(config.uploadDir, fileName));
         let sheetName = workbook.SheetNames[0];
+        console.log(workbook.SheetNames);
         let worksheet = workbook.Sheets[sheetName];
 
         let orderCount = 0;
@@ -28,8 +29,8 @@ const readFile = async (fileName, taskId) => {
             let tempPost = worksheet['I' + i.toString()] ? worksheet['I' + i.toString()].v.toString() : "000000";
             orderCount++;
             orderList.push({
-                tempOrder: tempOrder.replace(/\s/g,""),
-                tempPost: tempPost.replace(/\s/g,"")
+                tempOrder: tempOrder.toString().replace(/\s/g,""),
+                tempPost: tempPost.toString().replace(/\s/g,"")
             });
         }
         //let insertOrderList = [];
@@ -41,7 +42,7 @@ const readFile = async (fileName, taskId) => {
                 console.log(i);
             }
         }
-        tempSql = mysqlFormat("UPDATE `task` set `num` = ? , `status` = ? where `id` = ? ", [orderCount, '准备导入', taskId]);
+        tempSql = mysqlFormat("UPDATE `task` set `num` = ? , `status` = ? where `id` = ? ", [orderCount, '导入成功', taskId]);
         DB.queryDbPromise(tempSql);
         console.log('导入完成');
     }
